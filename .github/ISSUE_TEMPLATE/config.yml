@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Contributing guide
+    url: https://github.com/cookiemonsterdev/ffmpeg-aws-lambda-layer/blob/main/CONTRIBUTING.md
+    about: How to build locally and open a pull request
+  - name: README & troubleshooting
+    url: https://github.com/cookiemonsterdev/ffmpeg-aws-lambda-layer/blob/main/README.md#troubleshooting
+    about: Common build, SAR publish, and Lambda layer issues
