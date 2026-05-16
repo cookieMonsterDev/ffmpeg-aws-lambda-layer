@@ -1,0 +1,7 @@
+# Default owners — at least one listed user must approve PRs when
+# "Require review from Code Owners" is enabled on the default branch.
+#
+# Add maintainers on the same line (any one approval satisfies the rule):
+# * @cookieMonsterDev @other-maintainer
+
+* @cookieMonsterDev

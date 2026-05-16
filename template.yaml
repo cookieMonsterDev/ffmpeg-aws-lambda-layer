@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  FFmpeg & ffprobe as an AWS Lambda Layer, built for Amazon Linux 2023
+  Lambda runtimes (nodejs20.x, nodejs22.x, python3.12, python3.13,
+  provided.al2023, ...). The binary is the latest static release from
+  johnvansickle.com.
+
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: ffmpeg-lambda-layer-for-amazon-linux-2023
+    Description: >-
+      Latest static FFmpeg & ffprobe packaged as a Lambda Layer, compatible
+      with Amazon Linux 2023 Lambda runtimes. Binaries are exposed on $PATH
+      as /opt/bin/ffmpeg and /opt/bin/ffprobe.
+    Author: Mykhailo Toporkov
+    SpdxLicenseId: GPL-3.0-or-later
+    LicenseUrl: LICENSE
+    ReadmeUrl: README.md
+    Labels:
+      - ffmpeg
+      - ffprobe
+      - video
+      - audio
+      - media
+      - transcoding
+      - lambda
+      - layer
+      - al2023
+      - amazon-linux-2023
+    HomePageUrl: https://github.com/cookiemonsterdev/ffmpeg-aws-lambda-layer
+    SemanticVersion: 1.0.0
+    SourceCodeUrl: https://github.com/cookiemonsterdev/ffmpeg-aws-lambda-layer
+
+Parameters:
+  LayerName:
+    Type: String
+    Default: ffmpeg
+    Description: Name of the published Lambda Layer.
+
+Resources:
+  FfmpegLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !Ref LayerName
+      Description: >-
+        FFmpeg & ffprobe static binaries for AWS Lambda on Amazon Linux 2023.
+        Invoke via /opt/bin/ffmpeg or simply `ffmpeg` (already on PATH).
+      ContentUri: build/layer
+      CompatibleRuntimes:
+        - nodejs18.x
+        - nodejs20.x
+        - nodejs22.x
+        - python3.11
+        - python3.12
+        - python3.13
+        - provided.al2
+        - provided.al2023
+      CompatibleArchitectures:
+        - x86_64
+      LicenseInfo: GPL-3.0-or-later
+      RetentionPolicy: Retain
+
+Outputs:
+  LayerVersionArn:
+    Description: ARN of the published FFmpeg Lambda Layer version.
+    Value: !Ref FfmpegLayer
+    Export:
+      Name: !Sub "${AWS::StackName}-LayerVersionArn"

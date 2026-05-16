@@ -1,0 +1,29 @@
+ffmpeg-lambda-layer-for-amazon-linux-2023
+=========================================
+
+This Lambda Layer redistributes the statically-linked FFmpeg and ffprobe
+binaries produced by John Van Sickle and published at:
+
+    https://johnvansickle.com/ffmpeg/
+
+The "release" build is used. It is licensed under the GNU General Public
+License, version 3 or (at your option) any later version, because it is
+built with several GPL-licensed components (including x264, x265, etc.).
+
+FFmpeg itself is Copyright (c) the FFmpeg developers
+(https://ffmpeg.org/) and is licensed under the GNU GPL/LGPL. See the
+GPLv3 text bundled with the upstream tarball, or this repository's
+LICENSE file, for the full terms.
+
+The build scripts and SAM template in this repository are provided
+under the same license (GPL-3.0-or-later) so that the published
+Lambda Layer remains a single coherent GPL work, as required when
+distributing GPL-licensed binaries.
+
+If you need an LGPL-only build (no GPL components), modify build.sh to
+download the LGPL variant instead, e.g.:
+
+    ffmpeg-release-amd64-static.tar.xz   ->  ffmpeg-release-lgpl-amd64-static.tar.xz
+
+and update template.yaml's SpdxLicenseId/LicenseInfo to
+"LGPL-3.0-or-later".

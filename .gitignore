@@ -1,0 +1,20 @@
+# Build artifacts
+build/
+layer/
+packaged.yaml
+.aws-sam/
+
+# Downloaded archives
+*.tar.xz
+*.tar.gz
+*.md5
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
